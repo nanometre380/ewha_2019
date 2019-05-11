@@ -1,0 +1,71 @@
+'{{keyword}}'로 {{kind}}을(를) 검색한 결과입니다.
+<br>
+<form action="{% url 'search' %}" method='get'>
+    <input type="hidden" name = "kind" value= "{{kind}}">
+    <input type="hidden" name = "search" value= "{{keyword}}">
+    <button type="submit" name="date" value="first">첫날(5/15)</button>
+    <button type="submit" name="date" value="second">둘째날(5/16)</button>
+    <button type="submit" name="date" value="third">셋째날(5/17)</button>
+</form>
+
+{% if date == "first" %}
+    {% for result in results %}
+        {% if result.date == 1 %}
+        <a href="/home/{{date}}/?{{ result.place }}">
+        부스 이름 : {{result.name}}
+        메뉴 : {{result.detail}}
+        위치 : {{result.place}}
+        부스 번호 : {{result.booth_num}}
+        날짜 : {{result.date}}
+        </a>
+        <hr>
+        {% endif %}
+    {% endfor %}
+
+{% elif date == "second" %}
+    {% for result in results %}
+        {% if result.date == 2 %}
+        <a href="/home/{{date}}/?{{ result.place }}">
+        부스 이름 : {{result.name}}
+        메뉴 : {{result.detail}}
+        위치 : {{result.place}}
+        부스 번호 : {{result.booth_num}}
+        날짜 : {{result.date}}
+        </a>
+        <hr>
+        {% endif %}
+    {% endfor %}
+    
+{% elif date == "third" %}
+    {% for result in results %}
+        {% if result.date == 3 %}
+        <a href="/home/{{date}}/?{{ result.place }}">
+        부스 이름 : {{result.name}}
+        메뉴 : {{result.detail}}
+        위치 : {{result.place}}
+        부스 번호 : {{result.booth_num}}
+        날짜 : {{result.date}}
+        </a>
+        <hr>
+        {% endif %}
+    {% endfor %}
+
+{% else %}
+    {% for result in results %}
+        {% if result.date == 1 %}
+            <a href="/home/first/?{{ result.place }}">
+        {% elif result.date == 2%}
+            <a href="/home/second/?{{ result.place }}">
+        {% else %}
+            <a href="/home/third/?{{ result.place }}">
+        {% endif %}
+        
+        부스 이름 : {{result.name}}
+        메뉴 : {{result.detail}}
+        위치 : {{result.place}}
+        부스 번호 : {{result.booth_num}}
+        날짜 : {{result.date}}
+        </a>
+        <hr>
+    {% endfor %}
+{% endif %}
