@@ -33,7 +33,7 @@ def third(request): #셋째날
 
 def import_fest(request): #csvimport하는 함수
     with open("ewhafest1.csv") as f: #csv파일 열기
-        reader = csv.reader(f) #reader함수 : iterator타입 reader 객체 return    
+        reader = csv.reader(f) #reader함수 : iterator타입 reader 객체 return
         i = 0
         for row in reader: #한 행씩 접근
             if(row[0] == '888888'):
@@ -43,7 +43,7 @@ def import_fest(request): #csvimport하는 함수
                 fest.date = -1
             else :
                 fest.date = int(row[0])
-            
+
             if(row[1] == ''):
                 fest.place = -1
             else :
@@ -68,11 +68,11 @@ def import_fest(request): #csvimport하는 함수
                 fest.password = int(row[5])
             fest.detail = row[6]
             fest.save()
-    
+
     return redirect('home')
 
 def search(request): #검색
-    try : 
+    try :
         kind = request.GET['kind']
         keyword = request.GET['search']
         date = request.GET['date']
